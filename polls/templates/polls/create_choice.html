@@ -1,6 +1,7 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<h1>Please create a new choice</h1>
+<h2>Please create a new choice for question:</h2>
+<h3>{{ question }}</h3>
 <form method="POST" enctype="multipart/form-data">
 
   <!-- Security token -->

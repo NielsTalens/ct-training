@@ -14,8 +14,6 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-question_text')
-
-
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
@@ -54,14 +52,16 @@ def create_question(request):
 
 	return render(request, 'polls/create_question.html', {'form': form})
 
-def create_choice(request):
+def create_choice(request, question_id):
+	question = get_object_or_404(Question, pk=question_id)
+
 	if request.method == 'POST':
-		form = NewChoiceForm(request.POST)
+		form = NewChoiceForm(request.POST, instance=question)
 		if form.is_valid():
 				form.save()
 				return HttpResponseRedirect(reverse('polls:index'))
 	else:
 			form = NewChoiceForm()
 
-	return render(request, 'polls/create_choice.html', {'form': form})
-	# return render(request, "create_question.html", context)
+	context = {'form':form, 'question':question}
+	return render(request, 'polls/create_choice.html', context)

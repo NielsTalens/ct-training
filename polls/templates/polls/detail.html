@@ -22,6 +22,7 @@
 	</form>
 	<div class="row">
 		<p>
+			<a href="{% url 'polls:create-choice' question.id %}">Create a new choice</a>
 			<a href="{% url 'polls:index' %}">All questions</a>
 		</p>
 	</div>
