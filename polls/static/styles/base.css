@@ -1,0 +1,31 @@
+@import "bootstrap";
+@import "font-awesome";
+
+/* Basic */
+
+
+
+body {
+  background: rgb(39, 48, 53);
+}
+
+body, select {
+  color: #b9b9b9;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-size: 12pt;
+  font-weight: 300;
+  line-height: 1.75em;
+}
+
+input, textarea {
+  color: rgb(53, 49, 39);
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-size: 12pt;
+  font-weight: 300;
+  line-height: 1.75em;
+}
+
+.jumbotron {
+  background-size: cover;
+  background: rgb(39, 48, 53);
+}

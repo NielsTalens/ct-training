@@ -1,9 +1,23 @@
+{% extends 'polls/base.html' %}
+{% block content %}
 {% if latest_question_list_view %}
-    <ul>
-    {% for question in latest_question_list_view %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
+<div>
+	<h2>Please answer the following questions:</h2>
+</div>
+<div>
+	<ul>
+	{% for question in latest_question_list_view %}
+	<p><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></p>
+	{% endfor %}
+	</ul>
 {% else %}
-    <p>No polls are available.</p>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Holy guacamole!</strong>
+	<p class="mb-0">There are no polls available yet</p>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+</div>
 {% endif %}
+{% endblock %}
