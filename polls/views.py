@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import Choice, Question
+from .forms import NewQuestionForm
 
 
 class IndexView(generic.ListView):
@@ -12,7 +13,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('-question_text')
 
 
 class DetailView(generic.DetailView):
@@ -41,3 +42,15 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def create_question(request):
+	if request.method == 'POST':
+		form = NewQuestionForm(request.POST)
+		if form.is_valid():
+				form.save()
+				return HttpResponseRedirect(reverse('polls:index'))
+	else:
+			form = NewQuestionForm()
+
+	return render(request, 'polls/create_question.html', {'form': form})
+	# return render(request, "create_question.html", context)
