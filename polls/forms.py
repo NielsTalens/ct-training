@@ -1,5 +1,5 @@
 from django import forms
-from .models import Question
+from .models import Question, Choice
 
 
 # creating a form
@@ -13,5 +13,16 @@ class NewQuestionForm(forms.ModelForm):
         # specify fields to be used
         fields = [
             "question_text",
-            "pub_date",
+        ]
+class NewChoiceForm(forms.ModelForm):
+
+    # create meta class
+    class Meta:
+        # specify model to be used
+        model = Choice
+
+        # specify fields to be used
+        fields = [
+            "question",
+            "choice_text",
         ]

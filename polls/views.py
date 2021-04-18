@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import Choice, Question
-from .forms import NewQuestionForm
+from .forms import NewQuestionForm, NewChoiceForm
 
 
 class IndexView(generic.ListView):
@@ -53,4 +53,15 @@ def create_question(request):
 			form = NewQuestionForm()
 
 	return render(request, 'polls/create_question.html', {'form': form})
+
+def create_choice(request):
+	if request.method == 'POST':
+		form = NewChoiceForm(request.POST)
+		if form.is_valid():
+				form.save()
+				return HttpResponseRedirect(reverse('polls:index'))
+	else:
+			form = NewChoiceForm()
+
+	return render(request, 'polls/create_choice.html', {'form': form})
 	# return render(request, "create_question.html", context)
