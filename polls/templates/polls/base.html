@@ -37,11 +37,10 @@
         <main class="container">
           <div class="row">
             <div class="col">
-                  <a href="{% url 'polls:create-question' %}">Create a new question</a>
-                  <a href="{% url 'polls:create-choice' %}">Create a new choice</a>
-                {% block content %}
-                {% endblock %}
-                </div>
+              <a class="btn btn-outline-info mb-3" href="{% url 'polls:create-question' %}">Create a new question</a>
+              {% block content %}
+              {% endblock %}
+            </div>
             </div>
         </main>
     </div>

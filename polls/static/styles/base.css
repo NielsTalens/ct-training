@@ -9,8 +9,15 @@ body {
   background: rgb(39, 48, 53);
 }
 
-body, select {
+body {
   color: #b9b9b9;
+}
+
+select {
+  color: rgb(39, 48, 53);
+}
+
+body, select {
   font-family: "Roboto", Helvetica, sans-serif;
   font-size: 12pt;
   font-weight: 300;

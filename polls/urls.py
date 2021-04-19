@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('create-question', views.create_question, name='create-question'),
-    path('create-choice', views.create_choice, name='create-choice'),
+    path('<int:question_id>/create-choice/', views.create_choice, name='create-choice'),
 ]
