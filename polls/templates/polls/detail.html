@@ -18,12 +18,8 @@
 		<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
 		<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 	{% endfor %}
-	<input class="btn btn-primary btn-lg" type="submit" value="Vote">
+	<input class="btn btn-outline-primary mt-3 mr-2" type="submit" value="Vote">
+	<a class="btn btn-outline-info mt-3 mr-2" href="{% url 'polls:index' %}">All questions</a>
+	<a class="btn btn-outline-success mt-3 mr-2" href="{% url 'polls:create-choice' question.id %}">Create a new choice</a>
 	</form>
-	<div class="row">
-		<p>
-			<a href="{% url 'polls:create-choice' question.id %}">Create a new choice</a>
-			<a href="{% url 'polls:index' %}">All questions</a>
-		</p>
-	</div>
 {% endblock %}

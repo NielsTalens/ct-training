@@ -15,14 +15,16 @@ class NewQuestionForm(forms.ModelForm):
             "question_text",
         ]
 class NewChoiceForm(forms.ModelForm):
-
-    # create meta class
-    class Meta:
-        # specify model to be used
-        model = Choice
-
-        # specify fields to be used
-        fields = [
-            "question",
-            "choice_text",
-        ]
+  def __init__(self, *args, **kwargs):
+    question = kwargs.pop('question')
+    super(NewChoiceForm, self).__init__(*args, **kwargs)
+    self.fields['question'].initial = question
+    print(question.id)
+  class Meta:
+      # specify model to be used
+      model = Choice
+      # specify fields to be used
+      fields = [
+          "question",
+          "choice_text",
+      ]

@@ -56,12 +56,12 @@ def create_choice(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
 
 	if request.method == 'POST':
-		form = NewChoiceForm(request.POST, instance=question)
+		form = NewChoiceForm(request.POST, question=question)
 		if form.is_valid():
 				form.save()
-				return HttpResponseRedirect(reverse('polls:index'))
+				return HttpResponseRedirect(reverse('polls:detail', args=(question.id,)))
 	else:
-			form = NewChoiceForm()
+			form = NewChoiceForm(question=question)
 
 	context = {'form':form, 'question':question}
 	return render(request, 'polls/create_choice.html', context)
