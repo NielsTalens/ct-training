@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+import datetime
 
 from .models import Choice, Question
 from .forms import NewQuestionForm, NewChoiceForm
@@ -13,7 +14,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-question_text')
+        # return Question.objects.order_by('-question_text')
+        return Question.objects.order_by('-pub_date')[:6]
+
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
